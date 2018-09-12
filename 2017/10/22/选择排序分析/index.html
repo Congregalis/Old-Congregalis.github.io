@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>选择排序分析 | 咸鱼日志</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="也是排序算法中最最基础的算法之一 占个坑先">
+  <meta name="description" content="也是排序算法中最最基础的算法之一">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="选择排序分析">
 <meta property="og:url" content="http://yoursite.com/2017/10/22/选择排序分析/index.html">
 <meta property="og:site_name" content="咸鱼日志">
-<meta property="og:description" content="也是排序算法中最最基础的算法之一 占个坑先">
+<meta property="og:description" content="也是排序算法中最最基础的算法之一">
 <meta property="og:image" content="http://yoursite.com/img/selectsort.png">
-<meta property="og:updated_time" content="2017-10-22T15:24:14.611Z">
+<meta property="og:updated_time" content="2018-09-12T14:30:51.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="选择排序分析">
-<meta name="twitter:description" content="也是排序算法中最最基础的算法之一 占个坑先">
+<meta name="twitter:description" content="也是排序算法中最最基础的算法之一">
 <meta name="twitter:image" content="http://yoursite.com/img/selectsort.png">
   
     <link rel="alternative" href="/atom.xml" title="咸鱼日志" type="application/atom+xml">
@@ -175,15 +175,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>也是排序算法中最最基础的算法之一<br></p>
-<p>占个坑先<br><a id="more"></a></p>
-<p>ok,上代码！<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> selectSort(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> n)&#123;</div><div class="line">		<span class="keyword">int</span> i,j,k,<span class="built_in">min</span>;</div><div class="line">		</div><div class="line">		<span class="built_in">for</span>(i = <span class="number">0</span>;i &lt; n;i++)&#123;</div><div class="line">			k = i;</div><div class="line">			<span class="built_in">min</span> = arr[i];</div><div class="line">			</div><div class="line">			<span class="built_in">for</span>(j = i+<span class="number">1</span>;j &lt; n;j++)&#123;</div><div class="line">				<span class="built_in">if</span>(arr[j] &lt; arr[k])&#123;</div><div class="line">					k = j;</div><div class="line">					<span class="built_in">min</span> = arr[j];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			arr[k] = arr[i];</div><div class="line">			arr[i] = <span class="built_in">min</span>;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>ok,上代码<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> selectSort(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> n)&#123;</div><div class="line">		<span class="keyword">int</span> i,j,k,<span class="built_in">min</span>;</div><div class="line">		</div><div class="line">		<span class="built_in">for</span>(i = <span class="number">0</span>;i &lt; n;i++)&#123;</div><div class="line">			k = i;</div><div class="line">			<span class="built_in">min</span> = arr[i];</div><div class="line">			</div><div class="line">			<span class="built_in">for</span>(j = i+<span class="number">1</span>;j &lt; n;j++)&#123;</div><div class="line">				<span class="built_in">if</span>(arr[j] &lt; arr[k])&#123;</div><div class="line">					k = j;</div><div class="line">					<span class="built_in">min</span> = arr[j];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			arr[k] = arr[i];</div><div class="line">			arr[i] = <span class="built_in">min</span>;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
 <p>这是他在100到10000的数据规模下正序与逆序的运行时间图</p>
 <blockquote>
 <p> 橙线是正序情况下的排序<br> 蓝线是逆序情况下的排序</p>
 </blockquote>
 <p><img src="\img\selectsort.png" alt=""></p>
 <p>可以看出，它在正序逆序情况下差异不大。</p>
-<p>睡觉…(待更新)</p>
 
       
 

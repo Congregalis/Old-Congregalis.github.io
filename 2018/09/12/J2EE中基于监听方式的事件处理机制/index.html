@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>J2EE中基于监听方式的事件处理机制 | 咸鱼日志</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一般地，面向对象分析与设计中存在三种事件处理的机制，除了普通的方法调用外，常常用到回调函数，而J2EE中还提供了一种基于监听方式的事件处理机制，请查阅资料，对Action以及ActionListener的机制进行分析，完成一个分析示例。  概述在Java的Swing编程中，为了人机交互，事件机制是必不可少的一个东西。各种UI控件通过添加监听器来对事件进行监听，以此来响应用户的操作。与该机制相关的">
+  <meta name="description" content="一般地，面向对象分析与设计中存在三种事件处理的机制，除了普通的方法调用外，常常用到回调函数，而J2EE中还提供了一种基于监听方式的事件处理机制，请查阅资料，对Action以及ActionListener的机制进行分析，完成一个分析示例。  概述在Java的Swing编程中，为了人机交互，事件机制是必不可少的一个东西。各种UI控件通过添加监听器来对事件进行监听，以此来响应用户的操作。">
 <meta name="keywords" content="程序员,编程,代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="J2EE中基于监听方式的事件处理机制">
 <meta property="og:url" content="http://yoursite.com/2018/09/12/J2EE中基于监听方式的事件处理机制/index.html">
 <meta property="og:site_name" content="咸鱼日志">
-<meta property="og:description" content="一般地，面向对象分析与设计中存在三种事件处理的机制，除了普通的方法调用外，常常用到回调函数，而J2EE中还提供了一种基于监听方式的事件处理机制，请查阅资料，对Action以及ActionListener的机制进行分析，完成一个分析示例。  概述在Java的Swing编程中，为了人机交互，事件机制是必不可少的一个东西。各种UI控件通过添加监听器来对事件进行监听，以此来响应用户的操作。与该机制相关的">
-<meta property="og:updated_time" content="2018-09-12T14:11:31.946Z">
+<meta property="og:description" content="一般地，面向对象分析与设计中存在三种事件处理的机制，除了普通的方法调用外，常常用到回调函数，而J2EE中还提供了一种基于监听方式的事件处理机制，请查阅资料，对Action以及ActionListener的机制进行分析，完成一个分析示例。  概述在Java的Swing编程中，为了人机交互，事件机制是必不可少的一个东西。各种UI控件通过添加监听器来对事件进行监听，以此来响应用户的操作。">
+<meta property="og:image" content="http://yoursite.com/img/actionevent.png">
+<meta property="og:updated_time" content="2018-09-12T14:25:51.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2EE中基于监听方式的事件处理机制">
-<meta name="twitter:description" content="一般地，面向对象分析与设计中存在三种事件处理的机制，除了普通的方法调用外，常常用到回调函数，而J2EE中还提供了一种基于监听方式的事件处理机制，请查阅资料，对Action以及ActionListener的机制进行分析，完成一个分析示例。  概述在Java的Swing编程中，为了人机交互，事件机制是必不可少的一个东西。各种UI控件通过添加监听器来对事件进行监听，以此来响应用户的操作。与该机制相关的">
+<meta name="twitter:description" content="一般地，面向对象分析与设计中存在三种事件处理的机制，除了普通的方法调用外，常常用到回调函数，而J2EE中还提供了一种基于监听方式的事件处理机制，请查阅资料，对Action以及ActionListener的机制进行分析，完成一个分析示例。  概述在Java的Swing编程中，为了人机交互，事件机制是必不可少的一个东西。各种UI控件通过添加监听器来对事件进行监听，以此来响应用户的操作。">
+<meta name="twitter:image" content="http://yoursite.com/img/actionevent.png">
   
     <link rel="alternative" href="/atom.xml" title="咸鱼日志" type="application/atom+xml">
   
@@ -175,13 +177,14 @@
         <blockquote>
 <p>一般地，面向对象分析与设计中存在三种事件处理的机制，除了普通的方法调用外，常常用到回调函数，而J2EE中还提供了一种基于监听方式的事件处理机制，请查阅资料，对Action以及ActionListener的机制进行分析，完成一个分析示例。</p>
 </blockquote>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在Java的Swing编程中，为了人机交互，事件机制是必不可少的一个东西。各种UI控件通过添加监听器来对事件进行监听，以此来响应用户的操作。<br>与该机制相关的对象有三个：事件源、事件、事件监听器。<br>J2EE中基于监听方式处理事件的步骤大概分为以下几步：</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在Java的Swing编程中，为了人机交互，事件机制是必不可少的一个东西。各种UI控件通过添加监听器来对事件进行监听，以此来响应用户的操作。<br><a id="more"></a><br>与该机制相关的对象有三个：事件源、事件、事件监听器。<br>J2EE中基于监听方式处理事件的步骤大概分为以下几步：</p>
 <ul>
 <li>为事件源注册事件监听器</li>
 <li>用户的某种操作，触发事件源的事件监听器从而生成相应的事件对象</li>
 <li>将该事件源对象作为参数传给事件监听器</li>
 <li>事件监听器对象根据事件对象内相应的方法响应该事件</li>
 </ul>
+<p><img src="\img\actionevent.png" alt=""></p>
 <h2 id="事件监听器的四种实现方式"><a href="#事件监听器的四种实现方式" class="headerlink" title="事件监听器的四种实现方式"></a>事件监听器的四种实现方式</h2><blockquote>
 <p>这里以用户点击一个Button背景变黑的例子来做示例</p>
 </blockquote>

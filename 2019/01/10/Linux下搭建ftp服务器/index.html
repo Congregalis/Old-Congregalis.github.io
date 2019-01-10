@@ -17,7 +17,7 @@
 <meta property="og:description" content="要求：根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能：   学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。  在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。  教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。  对">
 <meta property="og:image" content="http://yoursite.com/img/count_list.png">
 <meta property="og:image" content="http://yoursite.com/img/calculate_score.png">
-<meta property="og:updated_time" content="2019-01-10T16:06:40.686Z">
+<meta property="og:updated_time" content="2019-01-10T16:09:36.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下搭建ftp服务器">
 <meta name="twitter:description" content="要求：根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能：   学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。  在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。  教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。  对">
@@ -183,7 +183,8 @@
 <li>对于指定格式的作业，编写脚本自动批改作业并在交作业名单中记录成绩。（注：格式可以自己指定，也可做成模板供学生下载使用） </li>
 <li>教师可以提供课件和参考资料供学生下载。 </li>
 <li>控制每个学生用户上传文件的个数不得超过 10 个。 </li>
-<li>注：可以根据题目要求，自己设定相关目录和权限）<br><br><h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2></li>
+<li>注：可以根据题目要求，自己设定相关目录和权限）<br><br><a id="more"></a>
+<h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2></li>
 </ul>
 <h3 id="FTP相关配置"><a href="#FTP相关配置" class="headerlink" title="FTP相关配置"></a>FTP相关配置</h3><h3 id="服务器目录的权限逻辑设置"><a href="#服务器目录的权限逻辑设置" class="headerlink" title="服务器目录的权限逻辑设置"></a>服务器目录的权限逻辑设置</h3><h3 id="脚本设计并自动执行"><a href="#脚本设计并自动执行" class="headerlink" title="脚本设计并自动执行"></a>脚本设计并自动执行</h3><p><img src="\img\count_list.png" alt="count"><br><br><br><img src="\img\calculate_score.png" alt="calculate score"></p>
 <h3 id="磁盘限额的实现"><a href="#磁盘限额的实现" class="headerlink" title="磁盘限额的实现"></a>磁盘限额的实现</h3><p><br></p>
@@ -405,11 +406,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>咸鱼日志</title>
+  <title>connngreeeegaliiiis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这是我的博客。">
 <meta name="keywords" content="程序员,编程,代码">
 <meta property="og:type" content="website">
-<meta property="og:title" content="咸鱼日志">
+<meta property="og:title" content="connngreeeegaliiiis">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="咸鱼日志">
+<meta property="og:site_name" content="connngreeeegaliiiis">
 <meta property="og:description" content="这是我的博客。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="咸鱼日志">
+<meta name="twitter:title" content="connngreeeegaliiiis">
 <meta name="twitter:description" content="这是我的博客。">
   
-    <link rel="alternative" href="/atom.xml" title="咸鱼日志" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="connngreeeegaliiiis" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -49,10 +49,10 @@
 			<img src="/asuna.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="">洪振杰</a></h1>
+		  <h1 class="header-author"><a href="">Congregalis</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">Talk is cheap</p>
+		<p class="header-subtitle">Make a little bit progress every day</p>
 		
 
 		<nav class="header-menu">
@@ -105,10 +105,10 @@
 				<img src="/asuna.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">洪振杰</h1>
+			  <h1 class="header-author js-header-author">Congregalis</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Talk is cheap<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Make a little bit progress every day<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -152,6 +152,91 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Linux下搭建ftp服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/10/Linux下搭建ftp服务器/">Linux下搭建ftp服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/10/Linux下搭建ftp服务器/" class="archive-article-date">
+  	<time datetime="2019-01-10T15:34:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="要求："><a href="#要求：" class="headerlink" title="要求："></a>要求：</h2><p>根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能： </p>
+<ul>
+<li>学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。 </li>
+<li>在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。 </li>
+<li>教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。 </li>
+<li>对于指定格式的作业，编写脚本自动批改作业并在交作业名单中记录成绩。（注：格式可以自己指定，也可做成模板供学生下载使用） </li>
+<li>教师可以提供课件和参考资料供学生下载。 </li>
+<li>控制每个学生用户上传文件的个数不得超过 10 个。 </li>
+<li>注：可以根据题目要求，自己设定相关目录和权限）<br><br><h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2></li>
+</ul>
+<h3 id="FTP相关配置"><a href="#FTP相关配置" class="headerlink" title="FTP相关配置"></a>FTP相关配置</h3><h3 id="服务器目录的权限逻辑设置"><a href="#服务器目录的权限逻辑设置" class="headerlink" title="服务器目录的权限逻辑设置"></a>服务器目录的权限逻辑设置</h3><h3 id="脚本设计并自动执行"><a href="#脚本设计并自动执行" class="headerlink" title="脚本设计并自动执行"></a>脚本设计并自动执行</h3><p><img src="\img\count_list.png" alt="count"><br><br><br><img src="\img\calculate_score.png" alt="calculate score"></p>
+<h3 id="磁盘限额的实现"><a href="#磁盘限额的实现" class="headerlink" title="磁盘限额的实现"></a>磁盘限额的实现</h3><p><br></p>
+<h2 id="结果参考"><a href="#结果参考" class="headerlink" title="结果参考"></a>结果参考</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/10/Linux下搭建ftp服务器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-J2EE中基于监听方式的事件处理机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -462,7 +547,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 洪振杰
+    		&copy; 2019 Congregalis
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -541,11 +626,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
@@ -596,7 +685,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">有什么错误尽管指出来吧~ &lt;br&gt; 谢谢</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">某大学在读普通学生</div>
   	  	
     	</section>
     

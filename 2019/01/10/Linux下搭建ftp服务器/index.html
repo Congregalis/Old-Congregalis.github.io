@@ -17,7 +17,7 @@
 <meta property="og:description" content="要求：根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能：   学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。  在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。  教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。  对">
 <meta property="og:image" content="http://yoursite.com/img/Linux_ftp/count_list.png">
 <meta property="og:image" content="http://yoursite.com/img/Linux_ftp/calculate_score.png">
-<meta property="og:updated_time" content="2019-01-11T06:39:38.546Z">
+<meta property="og:updated_time" content="2019-01-11T06:42:00.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下搭建ftp服务器">
 <meta name="twitter:description" content="要求：根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能：   学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。  在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。  教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。  对">
@@ -203,6 +203,12 @@
 <ul>
 <li>chroot可以使系统的目录结构以指定的位置作为<code>/</code>位置</li>
 <li>也就是说设置了chroot就禁止了用户切换到服务器目录的上级目录</li>
+<li>umask为037即<ul>
+<li>拥有者有所有权限</li>
+<li>拥有组有可读权限</li>
+<li>其他人无任何权限</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>其它配置</p>

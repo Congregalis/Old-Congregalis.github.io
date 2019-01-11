@@ -17,7 +17,7 @@
 <meta property="og:description" content="要求：根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能：   学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。  在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。  教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。  对">
 <meta property="og:image" content="http://yoursite.com/img/Linux_ftp/count_list.png">
 <meta property="og:image" content="http://yoursite.com/img/Linux_ftp/calculate_score.png">
-<meta property="og:updated_time" content="2019-01-11T06:42:00.316Z">
+<meta property="og:updated_time" content="2019-01-11T16:17:56.274Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下搭建ftp服务器">
 <meta name="twitter:description" content="要求：根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能：   学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。  在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。  教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。  对">
@@ -199,7 +199,7 @@
 </ul>
 </li>
 <li><p>关键配置</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="attr">local_root</span>=/home/shared/ftp</div><div class="line"><span class="comment">#用来指定服务器所在的目录，否则将在它的默认目录</span></div><div class="line"><span class="attr">allow_writeable_chroot</span>=<span class="literal">YES</span></div><div class="line"><span class="comment">#允许有写权限的chroot</span></div><div class="line"><span class="attr">chroot_local_user</span>=<span class="literal">YES</span></div><div class="line"><span class="comment">#本地所有账户都只能在自家目录登录</span></div><div class="line"><span class="attr">chroot_list_enable</span>=<span class="literal">YES</span></div><div class="line"><span class="comment">#启用chroot列表，该列表内填写不被chroot的账号列表</span></div><div class="line"><span class="attr">chroot_list_file</span>=/etc/vsftpd.chroot_list</div><div class="line"><span class="comment">#chroot列表位置（该列表一行一个用户名）</span></div><div class="line"><span class="attr">local_umask</span>=<span class="number">037</span></div><div class="line"><span class="comment">#设置在服务器上传的文件的默认权限，真实权限为777-umask的权限，即这里我设置的默认权限为740</span></div></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="attr">local_root</span>=/home/shared/ftp</div><div class="line"><span class="comment">#用来指定服务器所在的目录，否则将在它的默认目录</span></div><div class="line"><span class="attr">allow_writeable_chroot</span>=<span class="literal">YES</span></div><div class="line"><span class="comment">#允许有写权限的chroot</span></div><div class="line"><span class="attr">chroot_local_user</span>=<span class="literal">YES</span></div><div class="line"><span class="comment">#使使用者变为chroot除了下面表中的用户</span></div><div class="line"><span class="attr">chroot_list_enable</span>=<span class="literal">YES</span></div><div class="line"><span class="comment">#启用chroot列表，该列表内填写不被chroot的账号列表</span></div><div class="line"><span class="attr">chroot_list_file</span>=/etc/vsftpd.chroot_list</div><div class="line"><span class="comment">#chroot列表位置（该列表一行一个用户名）</span></div><div class="line"><span class="attr">local_umask</span>=<span class="number">037</span></div><div class="line"><span class="comment">#设置在服务器上传的文件的默认权限，真实权限为777-umask的权限，即这里我设置的默认权限为740</span></div></pre></td></tr></table></figure>
 <ul>
 <li>chroot可以使系统的目录结构以指定的位置作为<code>/</code>位置</li>
 <li>也就是说设置了chroot就禁止了用户切换到服务器目录的上级目录</li>
@@ -212,16 +212,18 @@
 </ul>
 </li>
 <li><p>其它配置</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">banner_file</span>=/etc/vsftpd_banner_file.txt</div></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">banner_file</span>=/etc/vsftpd_banner_file.txt</div><div class="line"><span class="attr">dirmessage_enable</span>=<span class="literal">YES</span></div></pre></td></tr></table></figure>
 <ul>
 <li>进服务器后的欢迎语，这里读一个我写的txt文件</li>
+<li>当用户进入某目录时会显示内容，显示的内容默认为该目录下的.message文件</li>
 </ul>
 </li>
 </ul>
-<h3 id="服务器目录的权限逻辑设置"><a href="#服务器目录的权限逻辑设置" class="headerlink" title="服务器目录的权限逻辑设置"></a>服务器目录的权限逻辑设置</h3><h3 id="脚本设计并自动执行"><a href="#脚本设计并自动执行" class="headerlink" title="脚本设计并自动执行"></a>脚本设计并自动执行</h3><p><img src="\img\Linux_ftp\count_list.png" alt="count"><br><br><br><img src="\img\Linux_ftp\calculate_score.png" alt="calculate score"></p>
+<h3 id="服务器目录的权限逻辑设置"><a href="#服务器目录的权限逻辑设置" class="headerlink" title="服务器目录的权限逻辑设置"></a>服务器目录的权限逻辑设置</h3><h3 id="脚本设计并自动执行"><a href="#脚本设计并自动执行" class="headerlink" title="脚本设计并自动执行"></a>脚本设计并自动执行</h3><p><img src="\img\Linux_ftp\count_list.png" alt="count"><br>在crontab下设置当前用户定时自动执行该脚本<br><code>crontab -e</code><br>添加<br><code>* 21 * * * ./count_list.sh</code><br>表示每天晚上18点执行一次该脚本，即统计学生交作业情况<br>cron格式为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>用date命令取得当前时间,以此打印出统计学生数量时的时间<br>遍历在homework目录下的文件，统计数量，再将文件名以<code>_</code>分割，取前半部分（也就是学生的姓名）写入文件中<br>最终给出统计得的学生数量<br><br><br><img src="\img\Linux_ftp\calculate_score.png" alt="calculate score"></p>
 <h3 id="磁盘限额的实现"><a href="#磁盘限额的实现" class="headerlink" title="磁盘限额的实现"></a>磁盘限额的实现</h3><p><br></p>
 <h2 id="结果参考"><a href="#结果参考" class="headerlink" title="结果参考"></a>结果参考</h2><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
-<li>allow_writeable_chroot=YES<br>Ubuntu下的vsftpd已经不支持具有写属性的root目录了</li>
+<li>allow_writeable_chroot=YES<br>Ubuntu下的vsftpd已经不支持具有写属性的root目录了，如果不添加这一配置用户将无法登录进服务器</li>
 </ul>
 
       

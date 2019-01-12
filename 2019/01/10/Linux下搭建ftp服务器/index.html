@@ -15,13 +15,28 @@
 <meta property="og:url" content="http://yoursite.com/2019/01/10/Linux下搭建ftp服务器/index.html">
 <meta property="og:site_name" content="connngreeeegaliiiis">
 <meta property="og:description" content="要求：根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能：   学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。  在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。  教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。  对">
-<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/count_list.png">
-<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/calculate_score.png">
-<meta property="og:updated_time" content="2019-01-11T16:17:56.274Z">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/chrootlist_ex.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/ftp_ls.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/homework_ls.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/repquota.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/tux%20log%20in.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/tux%20upload%20hwk.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/tux%20try%20to%20get%20other%27s%20hwk.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/tux%20get%20score%20list.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/lily%20get%20teching%20material.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/mput.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/teacher%20download%20stu%27s%20hwks.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/teacher%20check%20stu%27s%20hwk.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/teacher%20give%20score.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/auto-count%27s%20result.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/auto-count%20score%27s%20result.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/teacher%20upload%20score%20list.png">
+<meta property="og:image" content="http://yoursite.com/img/Linux_ftp/teacher%20upload%20teaching%20material.png">
+<meta property="og:updated_time" content="2019-01-12T09:03:34.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下搭建ftp服务器">
 <meta name="twitter:description" content="要求：根据所学内容，使用一种或多种服务（如 ftp、samba、Http）搭建一台服务器，完成下述功能：   学生用户能实现学生作业的上传，学生以“姓名+学号”命名作业。 学生能看到作业列表，但是不能下载。  在指定的交作业截止时间到时，编写脚本自动统计交作业的学生名 单和人数，生成文档，供教师查看。  教师用户能够查看学生提交的作业，在生成的交作业名单中录入成 绩，并发布成绩，供学生查看。  对">
-<meta name="twitter:image" content="http://yoursite.com/img/Linux_ftp/count_list.png">
+<meta name="twitter:image" content="http://yoursite.com/img/Linux_ftp/chrootlist_ex.png">
   
     <link rel="alternative" href="/atom.xml" title="connngreeeegaliiiis" type="application/atom+xml">
   
@@ -219,11 +234,54 @@
 </ul>
 </li>
 </ul>
-<h3 id="服务器目录的权限逻辑设置"><a href="#服务器目录的权限逻辑设置" class="headerlink" title="服务器目录的权限逻辑设置"></a>服务器目录的权限逻辑设置</h3><h3 id="脚本设计并自动执行"><a href="#脚本设计并自动执行" class="headerlink" title="脚本设计并自动执行"></a>脚本设计并自动执行</h3><p><img src="\img\Linux_ftp\count_list.png" alt="count"><br>在crontab下设置当前用户定时自动执行该脚本<br><code>crontab -e</code><br>添加<br><code>* 21 * * * ./count_list.sh</code><br>表示每天晚上18点执行一次该脚本，即统计学生交作业情况<br>cron格式为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>用date命令取得当前时间,以此打印出统计学生数量时的时间<br>遍历在homework目录下的文件，统计数量，再将文件名以<code>_</code>分割，取前半部分（也就是学生的姓名）写入文件中<br>最终给出统计得的学生数量<br><br><br><img src="\img\Linux_ftp\calculate_score.png" alt="calculate score"></p>
-<h3 id="磁盘限额的实现"><a href="#磁盘限额的实现" class="headerlink" title="磁盘限额的实现"></a>磁盘限额的实现</h3><p><br></p>
-<h2 id="结果参考"><a href="#结果参考" class="headerlink" title="结果参考"></a>结果参考</h2><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
-<li>allow_writeable_chroot=YES<br>Ubuntu下的vsftpd已经不支持具有写属性的root目录了，如果不添加这一配置用户将无法登录进服务器</li>
+<p><img src="\img\Linux_ftp\chrootlist_ex.png" alt="chrootlist_ex"><br><em>非chroot与chroot的区别</em></p>
+<h3 id="用户与组情况说明"><a href="#用户与组情况说明" class="headerlink" title="用户与组情况说明"></a>用户与组情况说明</h3><ul>
+<li>用户<ul>
+<li>tux</li>
+<li>bob</li>
+<li>lily</li>
+<li>Alice</li>
+<li>teacher</li>
+</ul>
+</li>
+<li>组<ul>
+<li>xjtuse 包含<ul>
+<li>tux</li>
+<li>bob</li>
+<li>lily</li>
+<li>Alice</li>
+<li>teacher</li>
+</ul>
+</li>
+<li>teacher 包含<ul>
+<li>teacher</li>
+</ul>
+</li>
+<li>student 包含<ul>
+<li>tux</li>
+<li>bob</li>
+<li>lily</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="服务器目录的权限逻辑设置"><a href="#服务器目录的权限逻辑设置" class="headerlink" title="服务器目录的权限逻辑设置"></a>服务器目录的权限逻辑设置</h3><p><img src="\img\Linux_ftp\ftp_ls.png" alt=""><br>可以看到homework的权限为777，除此以外group还多了一个s的权限。关于特殊权限（s、t）这里不阐述太多，在这里给group设置s权限的目的就是让该目录下的所有文件的组与该目录的组一致，也就是都是teacher组。这么设置是为了让homework目录下的文件（也就是学生交的作业）的owner为学生自己，组为teacher，为什么要这么设计呢，我们在下面讨论。<br><br>homework_list.txt用于存放学生交作业情况统计与学生的分数，它的owner和group都为teacher，other的权限只有r，这就保证了只有teacher能上传，学生们只能读。<br><br>textbook目录owner为teacher，group为xjtuse，这样的权限设置使得只有teacher与xjtuse组内用户可以读、执行该目录，也就是只有xjtuse的学生和老师才能进入该目录。除此之外owner还有一个w权限表示只有老师可以在这里面上传资料。<br><br><img src="\img\Linux_ftp\homework_ls.png" alt=""><br>根据上面homework目录的设置，该目录下的文件owner为上传者，而组与homework一致，为teacher。<br>根据服务器umask037得上传的文件权限均为740，如图所示。这就实现了仅学生自己能上传与下载自己的作业，teacher仅能下载，而其它学生没有任何权限。</p>
+<h3 id="脚本设计并自动执行"><a href="#脚本设计并自动执行" class="headerlink" title="脚本设计并自动执行"></a>脚本设计并自动执行</h3><h4 id="统计交作业情况"><a href="#统计交作业情况" class="headerlink" title="统计交作业情况"></a>统计交作业情况</h4><p>用date命令取得当前时间,以此打印出统计学生数量时的时间<br>遍历在homework目录下的文件，统计数量，再将文件名以<code>_</code>分割，取前半部分（也就是学生的姓名）写入文件中<br>最终给出统计得的学生数量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">count=0</div><div class="line">TIME=`date <span class="string">"+%Y-%m-%d %H:%M:%S"</span>`</div><div class="line"><span class="built_in">echo</span> <span class="string">"Update time is <span class="variable">$TIME</span>"</span> &gt;&gt; homework_list.txt</div><div class="line"><span class="built_in">echo</span> <span class="string">"-----------------------------------"</span> &gt;&gt; homework_list.txt</div><div class="line"><span class="built_in">echo</span> -e <span class="string">"Name\n"</span> &gt;&gt; homework_list.txt</div><div class="line"><span class="keyword">for</span> FILE <span class="keyword">in</span> `ls homework/`</div><div class="line"><span class="keyword">do</span></div><div class="line">	((count++))</div><div class="line"></div><div class="line">    <span class="comment"># # to delete left    % to delete right</span></div><div class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;FILE%_*&#125;</span> &gt;&gt; homework_list.txt</div><div class="line"><span class="keyword">done</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"-----------------------------------"</span> &gt;&gt; homework_list.txt</div><div class="line"><span class="built_in">echo</span> -e <span class="string">"<span class="variable">$count</span> Totally\n"</span> &gt;&gt; homework_list.txt</div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure></p>
+<p>在crontab下设置当前用户定时自动执行该脚本<br><code>crontab -e</code><br>添加<br><code>* 18 * * 1-5 ./count_list.sh</code><br>表示每礼拜一到礼拜五晚上6点执行一次该脚本，即统计学生交作业情况<br>cron格式为<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> Example of job definition:</span></div><div class="line"><span class="meta">#</span><span class="bash"> .---------------- minute (0 - 59)</span></div><div class="line"><span class="meta">#</span><span class="bash"> | .------------- hour (0 - 23)</span></div><div class="line"><span class="meta">#</span><span class="bash"> | | .---------- day of month (1 - 31)</span></div><div class="line"><span class="meta">#</span><span class="bash"> | | | .------- month (1 - 12) OR jan,feb,mar,apr ...</span></div><div class="line"><span class="meta">#</span><span class="bash"> | | | | .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></div><div class="line"><span class="meta">#</span><span class="bash"> | | | | |</span></div><div class="line"><span class="meta">#</span><span class="bash"> * * * * * user-name <span class="built_in">command</span> to be executed</span></div><div class="line"></div><div class="line">example:</div><div class="line"><span class="meta">#</span><span class="bash"> every mon to fri 18:00 excute count_list.sh</span></div><div class="line">0 18 * * 1-5 ./count_list.sh</div></pre></td></tr></table></figure></p>
+<p><br></p>
+<h4 id="自动批改指定格式的作业"><a href="#自动批改指定格式的作业" class="headerlink" title="自动批改指定格式的作业"></a>自动批改指定格式的作业</h4><p>我指定的格式为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.A</div><div class="line"><span class="number">2</span>.B</div><div class="line"><span class="number">3</span>.C</div><div class="line"><span class="number">4</span>.D</div><div class="line"><span class="number">5</span>.A</div><div class="line"><span class="number">6</span>.B</div><div class="line"><span class="number">7</span>.C</div><div class="line"><span class="number">8</span>.D</div><div class="line"><span class="number">9</span>.A</div><div class="line"><span class="number">10</span>.B</div></pre></td></tr></table></figure></p>
+<p>还要在与脚本同目录下创建一个正确答案文件correct_answer.txt，在里面按格式写好正确答案。<br><br>首先用sed在交作业名单的Name后面加上Score。<br>然后遍历homework目录下的文件，每遍历到一个文件，再遍历该文件的每一行，然后与正确答案的对应行匹配，以此来计分。<br>匹配答案运用awk，用NR匹配行号，然后打印出该行第二个参数（$2），即作业的答案，用同样的方法在正确答案里取得每一行的答案，然后进行比较来计分。<br>算出分数后同样运用sed在每个学生姓名后加上分数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">sed -i <span class="string">"s/Name/&amp;\tScore/"</span> homework_list.txt</div><div class="line"></div><div class="line"><span class="keyword">for</span> FILE <span class="keyword">in</span> `ls homework/`</div><div class="line"><span class="keyword">do</span></div><div class="line">	score=0</div><div class="line"></div><div class="line">	<span class="comment"># compare student's answer with correct answer line by line.</span></div><div class="line">	<span class="keyword">for</span> ((i=1;i&lt;=10;i++))</div><div class="line">	<span class="keyword">do</span></div><div class="line">		answer=`awk -F. <span class="string">'NR=='</span><span class="string">"<span class="variable">$i</span>"</span><span class="string">'&#123;print $2&#125;'</span> homework/<span class="variable">$FILE</span>`</div><div class="line">		correct_answer=`awk -F. <span class="string">'NR=='</span><span class="string">"<span class="variable">$i</span>"</span><span class="string">'&#123;print $2&#125;'</span> correct_answer.txt`</div><div class="line">		<span class="comment">#echo "$&#123;FILE%_*&#125;'s answer is $answer , right answer is $correct_answer."</span></div><div class="line"></div><div class="line">		<span class="comment"># if the two answers are the same one, score+10.</span></div><div class="line">		<span class="keyword">if</span> <span class="built_in">test</span> <span class="string">"<span class="variable">$answer</span>"</span> = <span class="string">"<span class="variable">$correct_answer</span>"</span></div><div class="line">		<span class="keyword">then</span></div><div class="line">			((score+=10))</div><div class="line">		<span class="keyword">fi</span></div><div class="line">	<span class="keyword">done</span></div><div class="line"></div><div class="line">	<span class="comment"># add score behind name</span></div><div class="line">	sed -i <span class="string">"s/<span class="variable">$&#123;FILE%_*&#125;</span>/&amp;\t<span class="variable">$score</span>/g"</span> homework_list.txt</div><div class="line"><span class="keyword">done</span></div><div class="line"><span class="comment">#sed "s/bob/&amp; 100/" homework_list.txt</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure></p>
+<h3 id="磁盘限额的实现"><a href="#磁盘限额的实现" class="headerlink" title="磁盘限额的实现"></a>磁盘限额的实现</h3><p>首先用fdisk进行分区，分出一块区并将其格式化为ext3（或其他），然后编辑/etc/fstab，添加一条新纪录来将分出来的区挂载到服务器目录上，属性内要加上<strong>usrquota</strong>和<strong>grpquota</strong>，这样才能使用quota。编辑完后运用mount进行挂载（注：此时会格覆盖掉你的原有目录，所以我采用的办法是先挂载到一个空目录上，再将服务器目录mv过来，记得要把设置的权限一同搬过来）。这样就完成了挂载，可以对服务器用quota进行限额了。<br><br>然后先初始化限额系统<code>quotacheck -avug</code>,会生成aquota.user和auota.group文件。<br><br>限额时用<code>edquota -u 用户名</code>来限额，然后用<code>edquota -p 待复制用户名 被复制用户名</code>来复制限额配置。我们的要求是限制学生上传数量不大于10个，那么就调在最右边的soft和hard，都调成10。</p>
+<blockquote>
+<p>左边的soft和hard是限制文件大小的，而右边的是限制文件个数的。<br>soft是软限制，若用户超过他设置的值，他们可以在一段固定的时间内通过删除文件或块来释放空间，若用户超过了宽限期，则他不能创建任何新的文件指导他删除了足够的文件回到软限制的范围之内。可以通过<code>edquota -t</code>来设置宽限期。<br>hard是硬限制，若用户超过了这限制就不能创建新的文件了。</p>
+</blockquote>
+<p>设置完之后重启quota服务来激活设置，这样就完成了限额。<br><br><img src="\img\Linux_ftp\repquota.png" alt="repquota"><br><em>限额报告</em><br><br></p>
+<h2 id="结果参考"><a href="#结果参考" class="headerlink" title="结果参考"></a>结果参考</h2><h3 id="学生"><a href="#学生" class="headerlink" title="学生"></a>学生</h3><p>学生tux登录服务器<br><img src="\img\Linux_ftp\tux log in.png" alt="tux log in"><br><br>tux交作业<br><img src="\img\Linux_ftp\tux upload hwk.png" alt="tux upload hwk"><br><br>tux尝试<del>抄作业</del>下载他人作业<br><img src="\img\Linux_ftp\tux try to get other&#39;s hwk.png" alt="tux try to get other&#39;s hwk"><br><br>tux查询成绩<br><img src="\img\Linux_ftp\tux get score list.png" alt="tux get score list"><br><br>lily下载学习资料<br><img src="\img\Linux_ftp\lily get teching material.png" alt="lily get teching material"><br><br>尝试上传超过10个文件,在上传第11个时失败<br><img src="\img\Linux_ftp\mput.png" alt="mput"><br></p>
+<h3 id="老师"><a href="#老师" class="headerlink" title="老师"></a>老师</h3><p>老师下载学生作业<br><img src="\img\Linux_ftp\teacher download stu&#39;s hwks.png" alt="teacher download stu&#39;s hwks"><br><br>老师查看作业并给分<br><img src="\img\Linux_ftp\teacher check stu&#39;s hwk.png" alt="teacher check stu&#39;s hwk"><br><br><img src="\img\Linux_ftp\teacher give score.png" alt="teacher give score"><br><br>老师运用脚本自动统计学生交作业情况<br><img src="\img\Linux_ftp\auto-count&#39;s result.png" alt="auto-count&#39;s result"><br><br>老师运用脚本自动批改作业<br><img src="\img\Linux_ftp\auto-count score&#39;s result.png" alt="auto-count score&#39;s result"><br><br>老师上传分数列表<br><img src="\img\Linux_ftp\teacher upload score list.png" alt="teacher upload score list"><br><br>老师上传学习资料<br><img src="\img\Linux_ftp\teacher upload teaching material.png" alt="teacher upload teaching material"><br></p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>allow_writeable_chroot=YES<br>Ubuntu下的vsftpd已经不支持具有写属性的root目录了，如果不添加这一配置用户除非将用户根目录的写属性去掉否则将无法登录进服务器。</li>
+<li>分区问题<br>虚拟机下只需再分配一块新的硬盘即可，但由于我是双系统环境，分配硬盘需要自己来分，就回到win10下再分了一块给ubuntu，然后在里面分一块区给服务器使用。<br>在编辑fstab时也要格外小心，一不小心编辑错了还会导致无法开机<del>亲身经历</del>。</li>
 </ul>
 
       
@@ -443,11 +501,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>

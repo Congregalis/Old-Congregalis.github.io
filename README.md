@@ -1,1 +1,1 @@
-<h3>The files in this blogs were regrettably lost :( </h3>
+<h3>The files in this blog were regrettably LOST :( </h3>
